@@ -1,15 +1,47 @@
-import React from 'react';
-import { List, Datagrid, Edit, Create, SimpleForm, ReferenceInput,ReferenceField, SelectInput, DateField, TextField, EditButton, DisabledInput, TextInput, LongTextInput, DateInput } from 'react-admin';
+import React, { Component } from 'react';
+import { List, Datagrid, Edit,   showNotification,
+    UPDATE, Create, SimpleForm, ReferenceInput, ReferenceField,  CreateButton, SelectInput, DateField, TextField, EditButton, DisabledInput, TextInput, LongTextInput, DateInput } from 'react-admin';
 import RichTextInput from 'ra-input-rich-text';
-
 import { Typography } from "@material-ui/core";
+import Toolbar from '@material-ui/core/Toolbar';
+import Button from '@material-ui/core/Button';
 
 import icon from '@material-ui/icons/Book';
+import VoteButton from './VoteButton';
 export const ArticleIcon = icon;
+
+// const ArticleActions = ({
+//     basePath,
+//     data,
+//     currentSort,
+//     displayedFilters,
+//     exporter,
+//     filters,
+//     filterValues,
+//     onUnselectItems,
+//     resource,
+//     selectedIds,
+//     showFilter,
+//     total
+// }) => (
+//     <Toolbar>
+//         {/* {filters && React.cloneElement(filters, {
+//             resource,
+//             showFilter,
+//             displayedFilters,
+//             filterValues,
+//             context: 'button',
+//         })} */}
+//         {/* <CreateButton basePath={basePath} /> */}
+//         {/* Add your custom actions */}
+//         <VoteButton record={data} type={"plus"}>plus</VoteButton>
+//         <VoteButton record={data} type={"decr"}>decr</VoteButton>
+//     </Toolbar>
+// );
 
 
 export const ArticleList = (props) => (
-    <List {...props}>
+    <List {...props} >
         <Datagrid>
             <TextField source="id" />
             <DateField source="createTime" />
@@ -17,7 +49,9 @@ export const ArticleList = (props) => (
             <TextField source="link" />
             <TextField source="CreateUser.nickName" />
             <TextField source="content" />
-            <EditButton basePath="/articles" />
+            <VoteButton {...props} type={"plus"}>plus</VoteButton>
+            <VoteButton {...props} type={"decr"}>decr</VoteButton>
+            {/* <EditButton basePath="/articles" /> */}
         </Datagrid>
     </List>
 );
