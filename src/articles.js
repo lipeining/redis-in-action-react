@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { List, Datagrid, Edit,   showNotification,
-    UPDATE, Create, SimpleForm, ReferenceInput, ReferenceField,  CreateButton, SelectInput, DateField, TextField, EditButton, DisabledInput, TextInput, LongTextInput, DateInput } from 'react-admin';
+import {
+    List, Datagrid, Edit, showNotification,
+    UPDATE, Create, SimpleForm, ReferenceInput, ReferenceField, CreateButton, SelectInput, DateField, TextField, EditButton, DisabledInput, TextInput, LongTextInput, DateInput
+} from 'react-admin';
 import RichTextInput from 'ra-input-rich-text';
 import { Typography } from "@material-ui/core";
 import Toolbar from '@material-ui/core/Toolbar';
@@ -60,14 +62,14 @@ const ArticleTitle = ({ record }) => {
     return <span>Article {record ? `"${record.title}"` : ''}</span>;
 };
 const Aside = ({ record }) => (
-  <div style={{ width: 200, margin: '1em' }}>
-      <Typography variant="title">Article details</Typography>
-      {record &&
-        (<Typography variant="body1">
-          Articles will only be published one an editor approves them
+    <div style={{ width: 200, margin: '1em' }}>
+        <Typography variant="title">Article details</Typography>
+        {record &&
+            (<Typography variant="body1">
+                Articles will only be published one an editor approves them
         </Typography>)
-      }
-  </div>
+        }
+    </div>
 );
 
 export const ArticleEdit = (props) => (
@@ -81,24 +83,24 @@ export const ArticleEdit = (props) => (
     </Edit>
 );
 const validateArticleCreation = (values) => {
-  const errors = {};
-  if (!values.title) {
-      errors.title = ['The title is required'];
-  }
-  if (!values.link) {
-      errors.link = ['The link is required'];
-  }
-  if (!values.content) {
-      errors.content = ['The content is required'];
-  }
-  return errors;
+    const errors = {};
+    if (!values.title) {
+        errors.title = ['The title is required'];
+    }
+    if (!values.link) {
+        errors.link = ['The link is required'];
+    }
+    if (!values.content) {
+        errors.content = ['The content is required'];
+    }
+    return errors;
 };
 
 export const ArticleCreate = (props) => (
     <Create title="Create a Article" {...props}>
         <SimpleForm validate={validateArticleCreation}>
             <ReferenceInput source="createUserId" reference="users">
-              <SelectInput optionText="nickName" />
+                <SelectInput optionText="nickName" />
             </ReferenceInput>
             <TextInput label="title" source="title" />
             <TextInput label="link" source="link" />
